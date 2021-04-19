@@ -22,12 +22,12 @@ function FormularioGastos ({guardarDatos}) {
         let objetoDeDatos = {
             nombre : nombre,
             dinero : parseInt(valor),
-            id : Math.floor(Math.random()*10000000)
+            id : Math.floor(Math.random()*10000000),
+            fecha : new Date().toLocaleDateString()
         }
         guardarDatos(objetoDeDatos);
         setNombre('');
         setValor(0);
-        
     }
       
         return (

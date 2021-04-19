@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FormularioPresupuesto from './formularioPresupuesto';
 import FormularioGastos from './formularioGastos';
-import Listado from './listado';
 import CalculosPresupuesto from './calculosPresupuesto';
 import 'antd/dist/antd.css';
 
@@ -25,10 +24,7 @@ function Home () {
     const [presupuestoInicial, setPresupuestoInicial] = useState(presupuestoIJson);
     const [datos, setDatos] = useState(datosJson);
 
-    console.log(presupuestoIJson);
-    
     function guardarDatos (dat) {
-        console.log(dat);
         dat.presupuestoInicial = presupuestoInicial;
         setDatos([...datos, dat]);
     }
@@ -51,9 +47,9 @@ function Home () {
         <div style={{display:'flex', justifyContent:'center', marginTop:100}}>
             {datosJson.length === 0 && !render ? <FormularioPresupuesto setPresupuestoInicial={setPresupuestoInicial} setRender={setRender}/> : null }
             {datosJson.length === 0 && render && datos.length === 0 ? <div><FormularioGastos guardarDatos={guardarDatos} /></div> : null }
-            {datosJson.length === 0 && datos.length !== 0 ? <><div><FormularioGastos guardarDatos={guardarDatos} /></div> <div> <CalculosPresupuesto eliminarDato={eliminarDato} datos={datos} presupuestoInicial={presupuestoInicial} /> </div></> : null}
+            {datosJson.length === 0 && datos.length !== 0 ? <><div><FormularioGastos guardarDatos={guardarDatos} /></div> <div> <CalculosPresupuesto setPresupuestoInicial={setPresupuestoInicial} eliminarDato={eliminarDato} datos={datos} presupuestoInicial={presupuestoInicial} /> </div></> : null}
             
-            {datosJson.length !== 0 ? <><div><FormularioGastos guardarDatos={guardarDatos} /></div> <div> <CalculosPresupuesto eliminarDato={eliminarDato} datos={datos} presupuestoInicial={presupuestoInicial} /> </div></> : null}
+            {datosJson.length !== 0 ? <><div><FormularioGastos guardarDatos={guardarDatos} /></div> <div> <CalculosPresupuesto setPresupuestoInicial={setPresupuestoInicial} eliminarDato={eliminarDato} datos={datos} presupuestoInicial={presupuestoInicial} /> </div></> : null}
         </div>
     )
 }
